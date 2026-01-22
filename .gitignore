@@ -1,9 +1,6 @@
-/diversos
-/logs
-/temp   
-/cache
+
 *.log   
-/resultados_final.csv
-001-base_completa.xlsx
-POWERFX.txt
-PROMPT.txt
+resultados_final/
+diversos/
+*.xlsx
+*.txt
