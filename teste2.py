@@ -111,7 +111,7 @@ print(f'---'*40)
 
 print(f'')
 
-# Dataframe com lotes com etiqueta gerada (status Ii)
+# Dataframe com lotes com etiqueta gerada (status II)
 df_lote_em_tratamento_status_ii = df_lote_em_tratamento[df_lote_em_tratamento["status_impressao"] == "II"]
 print(f"Total de Registros de Lotes em Tratamento no WMS com status II : {len(df_lote_em_tratamento_status_ii)}")
 print(df_lote_em_tratamento_status_ii.head())
@@ -120,20 +120,24 @@ print(df_lote_em_tratamento_status_ii.head())
 print(f'---'*40)
 
 
-# 9. Concatenar as colunas nota_fiscal e serie em df_objetos
-"""
+# Merge do dataframe com Lotes em tratamento com o dataframe de objeotos postados
+
+## Concatenar as colunas nota_fiscal e serie em df_objetos
 df_objetos['NOTA_SERIE'] = (df_objetos['NOTA_FISCAL'].astype('str') + "0" + df_objetos['SERIE'].astype('str')).astype('float64')
-"""
-# 10.Merge entre os dados dos lotes e objetos
-"""
+
+## Merge entre os dados dos lotes e objetos
+
 df_lote_possui_objeto = pd.merge(
-    df_lotes,
+    df_lotes_relacionados_com_df_pedidos,
     df_objetos[['LOTE', 'PEDIDO', 'TIPO_PEDIDO', 'ZONA', 'NOTA_SERIE','REGISTRO', 'DATA_EXPEDICAO']],
     on=['LOTE', 'PEDIDO', 'TIPO_PEDIDO', 'ZONA'],
     how='inner'
 )
 print(f'Total de registros entre lotes e objetos: {len(df_lote_possui_objeto)}')
-"""
+
+df_lote_possui_objeto_agrupar_itens = df_lote_possui_objeto.groupby(['NUM_PEDIDO_SISCAP','NOTA_SERIE','ZONA','item','descricao','um'])['qtde'].sum().reset_index().rename(columns={'qtde': 'QTD_TOTAL'})
+print(f'Total de registros entre lotes e objetos agrupados por NUM_PEDIDO_SISCAP, ZONA e NOTA_SERIE: {len(df_lote_possui_objeto_agrupar_itens)}')
+print(df_lote_possui_objeto_agrupar_itens.head())
 
 # 11. Merge entre os dados dos pedidos novos e lotes com objetos
 """
