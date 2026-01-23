@@ -19,6 +19,8 @@ df_objetos = pd.read_excel("001-base_completa.xlsx",
                            nrows=10000)
 print(f"Total de Registros na Planilha BASE_OBJSETO_POSTADO: {len(df_objetos)}")
 
+print(f'---'*40)
+
 # 2. Ajustar o nome das colunas chaves nos DataFrames
 df_lotes = df_lotes.rename(columns={
     'lote_pedido': 'LOTE',
@@ -32,35 +34,98 @@ df_pedidos = df_pedidos.rename(columns={
     'TP_PED': 'TIPO_PEDIDO'
 })
 
+# 3. Lista de pedidos únicos
+# Criar DataFrame com pedidos únicos
+pedidos_unicos = df_pedidos.assign(MCU=lambda x: x['NUM_PEDIDO_SISCAP'].astype(str).str[:8])[['NUM_PEDIDO_SISCAP', 'PEDIDO', 'TIPO_PEDIDO','DT_TRANS', 'MCCO','CLIENTE','NOME_CLI', 'MCU']].drop_duplicates()
+# Filtrar pedidos que começam com '0' (como NUM_PEDIDO_SISCAP LIKE '0%')
+pedidos_unicos = pedidos_unicos[
+    pedidos_unicos['NUM_PEDIDO_SISCAP'].astype(str).str.startswith('0')
+]
+
+print(f"Pedidos que começam com 0: {len(pedidos_unicos)}")
+print(pedidos_unicos.head())
+print(f'---'*40)
+
 # 3.Dataframe somente com pedidos novos
 df_pedidos_novos = df_pedidos[df_pedidos["PROX_STATUS"] == 540]
 print(f"Total de Pedidos Novos: {len(df_pedidos_novos)}")
 
+df_pedidos_novos_agrupados = df_pedidos_novos.groupby(['NUM_PEDIDO_SISCAP', 'ITEM','DESC_ITEM' ,'UN_MEDIDA'])['QTD'].sum().reset_index().rename(columns={'QTD': 'QTD_TOTAL'})
+print(f"Total de Pedidos Novos Agrupados: {len(df_pedidos_novos_agrupados)}")
+
+print(df_pedidos_novos_agrupados.head())
+
+print(f'---'*40)
+
 # 4. Dataframe somente com pedidos cancelados
-df_pedidos_cancelados = df_pedidos[df_pedidos["ULT_STATUS"].isin([980,982,983])]
+df_pedidos_cancelados = df_pedidos[df_pedidos["ULT_STATUS"].isin([980,982])]
 print(f"Total de Pedidos Cancelados: {len(df_pedidos_cancelados)}")
 
-# 5. Excluir do Dataframe df_lotes o status 291 e tipo ZR
+df_pedidos_cancelados_agrupados = df_pedidos_cancelados.groupby(['NUM_PEDIDO_SISCAP', 'ITEM','DESC_ITEM' ,'UN_MEDIDA'])['QTD'].sum().reset_index().rename(columns={'QTD': 'QTD_TOTAL'})
+print(f"Total de Pedidos Cancelados Agrupados: {len(df_pedidos_cancelados_agrupados)}")
+
+print(df_pedidos_cancelados_agrupados.head())
+
+print(f'---'*40)
+
+# 5. Dataframe somente com pedidos em tratamento
+
+## Excluir do Dataframe df_lotes o status 291 e tipo ZR
 df_lotes = df_lotes.drop(df_lotes[df_lotes["status_lote"] == 291].index)
 df_lotes = df_lotes.drop(df_lotes[df_lotes["TIPO_PEDIDO"] == "ZR"].index)
-print(f"Total de Registros na Planilha BASE_LOTES após exclusão do status 291: {len(df_lotes)}")
 
-# 6. Dataframe somente com lotes sem tratamento
-df_lotes_sem_tratamento = df_lotes[(df_lotes["status_impressao"] != "II")]
-print(f"Total de Registros Aguardando Tratamento no WMS: {len(df_lotes_sem_tratamento)}")
+df_lotes_relacionados_com_df_pedidos = pd.merge(
+    df_lotes,
+    df_pedidos[['PEDIDO', 'TIPO_PEDIDO','NUM_PEDIDO_SISCAP','DT_TRANS']],
+    on=['PEDIDO', 'TIPO_PEDIDO'],
+    how='inner'
+)
 
-# 7. Dataframe com Lote sem pauta gerada
-df_lotes_sem_pauta = df_lotes_sem_tratamento[df_lotes_sem_tratamento["status_impressao"] != "I"]
-print(f"Total de Registros sem Pauta Gerada: {len(df_lotes_sem_pauta)}")
+print(f"Total de Registros na Planilha BASE_LOTES relacionados com BASE_PEDIDOS antes do tratamento: {len(df_lotes_relacionados_com_df_pedidos)}")
+print(df_lotes_relacionados_com_df_pedidos.head())
+print(f'---'*40)
 
-# 8. Dataframe com Lote com pauta gerada
-df_lotes_com_pauta = df_lotes_sem_tratamento[df_lotes_sem_tratamento["status_impressao"] == "I"]
-print(f"Total de Registros com Pauta Gerada: {len(df_lotes_com_pauta)}")
+## Eilminar duplicidades e ajustar valores NaN na coluna status_impressao
+df_lotes_relacionados_com_df_pedidos = df_lotes_relacionados_com_df_pedidos.drop_duplicates()
+df_lotes_relacionados_com_df_pedidos = df_lotes_relacionados_com_df_pedidos.replace({'status_impressao': {"": 'III', None: 'III',"NAN": 'III'}})
+print(f"Total de Registros na Planilha BASE_LOTES relacionados com BASE_PEDIDOS: {len(df_lotes_relacionados_com_df_pedidos)}")
+print(df_lotes_relacionados_com_df_pedidos.head())
+print(f'---'*40)
+
+df_lote_em_tratamento = df_lotes_relacionados_com_df_pedidos.groupby(['NUM_PEDIDO_SISCAP','LOTE','status_impressao' ,'item', 'descricao', 'um'])['qtde'].sum().reset_index().rename(columns={'qtde': 'QTD_TOTAL'})
+print(f"Total de Registros de Lotes em Tratamento no WMS: {len(df_lote_em_tratamento)}")
+
+# Dataframe com lotes sem impressao de pauta (status III)
+df_lote_em_tratamento_status_iii = df_lote_em_tratamento[df_lote_em_tratamento["status_impressao"] == "III"]
+print(f"Total de Registros de Lotes em Tratamento no WMS com status III : {len(df_lote_em_tratamento_status_iii)}")
+print(df_lote_em_tratamento_status_iii.head())
+
+print(f'')
+
+# Dataframe com lotes com impressao de pauta (status I)
+df_lote_em_tratamento_status_i = df_lote_em_tratamento[df_lote_em_tratamento["status_impressao"] == "I"]
+print(f"Total de Registros de Lotes em Tratamento no WMS com status I : {len(df_lote_em_tratamento_status_i)}")
+print(df_lote_em_tratamento_status_i.head())
+
+print(f'---'*40)
+
+print(f'')
+
+# Dataframe com lotes com etiqueta gerada (status Ii)
+df_lote_em_tratamento_status_ii = df_lote_em_tratamento[df_lote_em_tratamento["status_impressao"] == "II"]
+print(f"Total de Registros de Lotes em Tratamento no WMS com status II : {len(df_lote_em_tratamento_status_ii)}")
+print(df_lote_em_tratamento_status_ii.head())
+
+
+print(f'---'*40)
+
 
 # 9. Concatenar as colunas nota_fiscal e serie em df_objetos
+"""
 df_objetos['NOTA_SERIE'] = (df_objetos['NOTA_FISCAL'].astype('str') + "0" + df_objetos['SERIE'].astype('str')).astype('float64')
-
+"""
 # 10.Merge entre os dados dos lotes e objetos
+"""
 df_lote_possui_objeto = pd.merge(
     df_lotes,
     df_objetos[['LOTE', 'PEDIDO', 'TIPO_PEDIDO', 'ZONA', 'NOTA_SERIE','REGISTRO', 'DATA_EXPEDICAO']],
@@ -68,23 +133,27 @@ df_lote_possui_objeto = pd.merge(
     how='inner'
 )
 print(f'Total de registros entre lotes e objetos: {len(df_lote_possui_objeto)}')
-
+"""
 
 # 11. Merge entre os dados dos pedidos novos e lotes com objetos
+"""
 df_combinado02 = pd.merge(
     df_pedidos,
     df_lote_possui_objeto[['PEDIDO', 'TIPO_PEDIDO', 'NOTA_SERIE','ZONA','REGISTRO', 'DATA_EXPEDICAO']],
     on=['PEDIDO', 'TIPO_PEDIDO', 'NOTA_SERIE'],
     how='inner'
 )
+"""
 
 # Excluir as duplicidades da combinacao 02
+"""
 print(f'Total de registros do combinado02 com duplicidade: {len(df_combinado02)}')
 df_combinado03 = df_combinado02.drop_duplicates()
 print(f'Total de registros do combinado02 sem duplicidade: {len(df_combinado03)}')
-
+"""
 
 # 12. Criar o dict com dados da expedição
+"""
 dict_expedicao = defaultdict(list)
 
 for _, linha in df_combinado03.iterrows():
@@ -100,3 +169,4 @@ for _, linha in df_combinado03.iterrows():
     dict_expedicao[id_].append(item)
 
 print(dict_expedicao)
+"""
