@@ -62,9 +62,20 @@ pedidos_unicos = df_pedidos.assign(MCU=lambda x: x['NUM_PEDIDO_SISCAP'].astype(s
 df_pedidos_unicos = pedidos_unicos[
     pedidos_unicos['NUM_PEDIDO_SISCAP'].astype(str).str.startswith('0')
 ]
-df_pedidos_unicos = df_pedidos_unicos.drop(["PEDIDO","TIPO_PEDIDO"],axis=1).drop_duplicates()
-df_pedidos_unicos["FORMATO_JSON"] = "{}"
 
+# Excluir colunas
+df_pedidos_unicos = df_pedidos_unicos.drop(["PEDIDO","TIPO_PEDIDO"],axis=1).drop_duplicates()
+
+# merge df_pedidos_unicos com df_base_mcco
+df_pedidos_unicos = pd.merge(
+    df_pedidos_unicos,
+    df_base_mcco[["MCCO","DESCRICAO_MCCO"]],
+    on=["MCCO"],
+    how="inner"
+)
+
+# Incluir coluna Formato JSON
+df_pedidos_unicos["FORMATO_JSON"] = "{}"
 
 
 #print(f"Total de Pedidos Únicos que começam com 0: {len(df
