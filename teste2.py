@@ -1,5 +1,8 @@
 import pandas as pd
 from collections import defaultdict
+import json
+from datetime import datetime
+import numpy as np
 
 # Sere como um script de análise de dados para processar informações de pedidos, lotes e objetos postados a partir de uma planilha Excel.
 # Serão 05 etapas principais:
@@ -15,21 +18,21 @@ from collections import defaultdict
 ## 01.01 Carregar os dados da planilha base_pedidos
 df_pedidos = pd.read_excel("001-base_completa.xlsx",
                     sheet_name="base_pedidos",
-                    usecols="A:P",nrows=10000)
+                    usecols="A:P",nrows=400000)
 #print(f"Total de Registros na Planilha BASE_PEDIDOS: {len(df_pedidos)}")
 
 ## 01.02 Carregar os dados da planilha base_lotes
 df_lotes = pd.read_excel("001-base_completa.xlsx",
                          sheet_name="base_lotes",
                          usecols="A:Q",
-                         nrows=10000)
+                         nrows=200000)
 #print(f"Total de Registros na Planilha BASE_LOTES: {len(df_lotes)}")
 
 ## 01.03 Carregar os dados da planilha base_objeto_postado
 df_objetos = pd.read_excel("001-base_completa.xlsx",
                            sheet_name="base_objeto_postado",
                            usecols="A:L",
-                           nrows=10000)
+                           nrows=200000)
 # print(f"Total de Registros na Planilha BASE_OBJSETO_POSTADO: {len(df_objetos)}")
 
 
@@ -158,7 +161,21 @@ df_lote_em_tratamento_status_ii = df_lote_em_tratamento[df_lote_em_tratamento["s
 
 
 ## 03.04.08 Concatenar as colunas nota_fiscal e serie em df_objetos
-df_objetos['NOTA_SERIE'] = (df_objetos['NOTA_FISCAL'].astype('str') + "0" + df_objetos['SERIE'].astype('str')).astype('float64')
+
+# Preencher NaN com 0 ou outro valor
+#df_objetos['NOTA_FISCAL'] = df_objetos['NOTA_FISCAL'].fillna(0)
+# Filtrar apenas linhas com NOTA_FISCAL não nulo
+df_objetos = df_objetos.dropna(subset=['NOTA_FISCAL']).copy()
+
+# Converter para string (removendo .0 se quiser)
+df_objetos['NOTA_FISCAL_STR'] = df_objetos['NOTA_FISCAL'].astype(int).astype(str)
+
+# Criar NOTA_SERIE com zfill
+df_objetos['NOTA_SERIE'] = (
+    df_objetos['NOTA_FISCAL_STR'] + 
+    df_objetos['SERIE'].astype(str).str.zfill(2)
+).astype('float64')
+
 
 ## 03.04.09 Merge do dataframe com Lotes em tratamento com o dataframe de objeotos postados
 
@@ -197,9 +214,9 @@ for _, linha in df_pedidos_novos_agrupados.iterrows():
     } 
     dict_pedidos_novos[id_].append(item)
 
-print(dict_pedidos_novos)
-print(f'---'*40)
-print(f'')
+#print(dict_pedidos_novos)
+#print(f'---'*40)
+#print(f'')
 
 ## 04.02  Criar o dict com o dataframe dos pedidos cancelados
 print(f'Criando dicionário de pedidos cancelados...')
@@ -213,9 +230,9 @@ for _, linha in df_pedidos_cancelados_agrupados.iterrows():
           "qtd_total": linha["QTD_TOTAL"]          
     } 
     dict_pedidos_cancelados[id_].append(item)
-print(dict_pedidos_cancelados)
-print(f'---'*40)
-print(f'')
+#print(dict_pedidos_cancelados)
+#print(f'---'*40)
+#print(f'')
 
 ## 04.03  Criar o dict com o dataframe dos lotes em tratamento status III
 print(f'Criando dicionário de lotes em tratamento status III...')  
@@ -230,9 +247,9 @@ for _, linha in df_lote_em_tratamento_status_iii.iterrows():
           "qtd_total": linha["QTD_TOTAL"]          
     } 
     dict_lotes_tratamento_iii[id_].append(item)
-print(dict_lotes_tratamento_iii)
-print(f'---'*40)    
-print(f'')
+#print(dict_lotes_tratamento_iii)
+#print(f'---'*40)    
+#print(f'')
 
 ## 04.04  Criar o dict com o dataframe dos lotes em tratamento status I
 print(f'Criando dicionário de lotes em tratamento status I...') 
@@ -247,9 +264,9 @@ for _, linha in df_lote_em_tratamento_status_i.iterrows():
           "qtd_total": linha["QTD_TOTAL"]          
     } 
     dict_lotes_tratamento_i[id_].append(item)
-print(dict_lotes_tratamento_i)
-print(f'---'*40)    
-print(f'') 
+#print(dict_lotes_tratamento_i)
+#print(f'---'*40)    
+#print(f'') 
 
 ## 04.05  Criar o dict com o dataframe do df_lote_possui_objeto_agrupar_iten
 print(f'Criando dicionário de lotes com objetos postados com itens agrupados...') 
@@ -266,9 +283,9 @@ for _, linha in df_lote_possui_objeto_agrupar_itens.iterrows():
           "qtd_total": linha["QTD_TOTAL"]          
     } 
     dict_lotes_objetos_itens[id_].append(item)
-print(dict_lotes_objetos_itens)
-print(f'---'*40)
-print(f'')
+#print(dict_lotes_objetos_itens)
+#print(f'---'*40)
+#print(f'')
 
 ## 04.06  Criar o dict com o dataframe do df_lote_possui_objeto_unificar_rastreamento
 print(f'Criando dicionário de lotes com objetos postados unificados para rasteamento...') 
@@ -282,9 +299,9 @@ for _, linha in df_lote_possui_objeto_unificar_rastreamento.iterrows():
           "data_expedicao": linha["DATA_EXPEDICAO"]          
     } 
     dict_lotes_objetos_rastreamento[id_].append(item)   
-print(dict_lotes_objetos_rastreamento)
-print(f'---'*40)
-print(f'')
+#print(dict_lotes_objetos_rastreamento)
+#print(f'---'*40)
+#print(f'')
 
 ## 04.07 Criar dicionário dos pedidos únicos
 dict_pedidos_unicos = defaultdict(list)
@@ -295,12 +312,232 @@ for _, linha in df_pedidos_unicos.iterrows():
         "cliente" : linha["CLIENTE"],
         "nome_cli" : linha["NOME_CLI"],
         "mcu" : linha["MCU"],
+        "descricao_mcco" : linha["DESCRICAO_MCCO"],
         "fomrato_json" : linha["FORMATO_JSON"]
     }
     dict_pedidos_unicos[id_].append(item)
-print(dict_pedidos_unicos)
+#print(dict_pedidos_unicos)
+#print(f'---'*40)
+#print(f'')
+
+# Etapa 05: Gerar estrutura JSON para integração com bot
+print(f'Criando estrutura JSON para cada pedido...')
+
+import json
+from datetime import datetime
+
+# Função para converter objetos Timestamp para string ISO
+def json_serializer(obj):
+    """Serializa objetos Timestamp para string ISO format."""
+    if isinstance(obj, pd.Timestamp):
+        return obj.isoformat()
+    raise TypeError(f"Type {type(obj)} not serializable")
+
+# Função para construir o JSON para um pedido específico
+def construir_json_pedido(num_pedido_siscap, dict_pedido_unico, dict_pedidos_novos, 
+                         dict_pedidos_cancelados, dict_lotes_tratamento_iii, 
+                         dict_lotes_tratamento_i, dict_lotes_objetos_itens, 
+                         dict_lotes_objetos_rastreamento):
+    
+    # Obter dados básicos do pedido
+    pedido_info = dict_pedido_unico.get(num_pedido_siscap, [{}])[0]
+    
+    # Estrutura JSON base conforme especificação
+    estrutura_json = {
+        "NUM_PEDIDO_SISCAP": num_pedido_siscap,
+        "PEDIDO": {
+            "DT_TRANS": pedido_info.get("dt_trans"),
+            "MCU": pedido_info.get("mcu"),
+            "CLIENTE": pedido_info.get("cliente"),
+            "NOME_CLI": pedido_info.get("nome_cli"),
+            "DESCRICAO_MCCO": pedido_info.get("descricao_mcco")
+        },
+        "RESERVADO": [],
+        "CANCELADO": [],
+        "PROCESSAMENTO": [],
+        "PAUTA_IMPRESSA": [],
+        "ATENDIDO": []  # Lista de objetos, cada um com NOTA_SERIE, SUBPAUTA e ITENS
+    }
+    
+    # Preencher RESERVADO (pedidos novos)
+    for item in dict_pedidos_novos.get(num_pedido_siscap, []):
+        estrutura_json["RESERVADO"].append({
+            "ITEM": item.get("item"),
+            "DESCRICAO_ITEM": item.get("desc_item"),
+            "UN_MEDIDA": item.get("un_medida"),
+            "QTDE": item.get("qtd_total")
+        })
+    
+    # Preencher CANCELADO
+    for item in dict_pedidos_cancelados.get(num_pedido_siscap, []):
+        estrutura_json["CANCELADO"].append({
+            "ITEM": item.get("item"),
+            "DESCRICAO_ITEM": item.get("desc_item"),
+            "UN_MEDIDA": item.get("un_medida"),
+            "QTDE": item.get("qtd_total")
+        })
+    
+    # Preencher PROCESSAMENTO (lotes status III)
+    for item in dict_lotes_tratamento_iii.get(num_pedido_siscap, []):
+        estrutura_json["PROCESSAMENTO"].append({
+            "ITEM": item.get("item"),
+            "DESCRICAO_ITEM": item.get("descricao"),
+            "UN_MEDIDA": item.get("um"),
+            "QTDE": item.get("qtd_total")
+        })
+    
+    # Preencher PAUTA_IMPRESSA (lotes status I)
+    for item in dict_lotes_tratamento_i.get(num_pedido_siscap, []):
+        estrutura_json["PAUTA_IMPRESSA"].append({
+            "ITEM": item.get("item"),
+            "DESCRICAO_ITEM": item.get("descricao"),
+            "UN_MEDIDA": item.get("um"),
+            "QTDE": item.get("qtd_total")
+        })
+    
+    # Preencher ATENDIDO conforme especificação
+    # Estrutura: Lista de objetos, cada um com:
+    # - NOTA_SERIE
+    # - SUBPAUTA  
+    # - ITENS { SKU: [...], RASTREAMENTO: [...] }
+    
+    notas_agrupadas = {}
+    
+    # Agrupar itens por nota_serie
+    for item in dict_lotes_objetos_itens.get(num_pedido_siscap, []):
+        nota_serie = item.get("nota_serie")
+        if nota_serie not in notas_agrupadas:
+            notas_agrupadas[nota_serie] = {
+                "NOTA_SERIE": nota_serie,
+                "SUBPAUTA": item.get("subpauta"),
+                "ITENS": {
+                    "SKU": [],
+                    "RASTREAMENTO": []
+                }
+            }
+        
+        notas_agrupadas[nota_serie]["ITENS"]["SKU"].append({
+            "ITEM": item.get("item"),
+            "DESCRICAO_ITEM": item.get("descricao"),
+            "UN_MEDIDA": item.get("um"),
+            "QTDE": item.get("qtd_total")
+        })
+    
+    # Adicionar registros de rastreamento
+    for rastreamento in dict_lotes_objetos_rastreamento.get(num_pedido_siscap, []):
+        nota_serie = rastreamento.get("nota_serie")
+        if nota_serie in notas_agrupadas:
+            notas_agrupadas[nota_serie]["ITENS"]["RASTREAMENTO"].append({
+                "REGISTRO": rastreamento.get("registro")
+            })
+    
+    # Converter dicionário para lista
+    estrutura_json["ATENDIDO"] = list(notas_agrupadas.values())
+    
+    return estrutura_json
+
+# Atualizar o dicionário dict_pedidos_unicos com o JSON gerado
+for num_pedido_siscap in dict_pedidos_unicos.keys():
+    try:
+        # Construir o JSON para este pedido
+        json_data = construir_json_pedido(
+            num_pedido_siscap,
+            dict_pedidos_unicos,
+            dict_pedidos_novos,
+            dict_pedidos_cancelados,
+            dict_lotes_tratamento_iii,
+            dict_lotes_tratamento_i,
+            dict_lotes_objetos_itens,
+            dict_lotes_objetos_rastreamento
+        )
+        
+        # Converter para string JSON
+        json_str = json.dumps(json_data, default=json_serializer, indent=2, ensure_ascii=False)
+        
+        # Atualizar o dicionário dict_pedidos_unicos
+        if dict_pedidos_unicos[num_pedido_siscap]:
+            dict_pedidos_unicos[num_pedido_siscap][0]["fomrato_json"] = json_str
+        
+        print(f"JSON gerado para pedido: {num_pedido_siscap}")
+        
+    except Exception as e:
+        print(f"Erro ao gerar JSON para pedido {num_pedido_siscap}: {str(e)}")
+        if dict_pedidos_unicos[num_pedido_siscap]:
+            dict_pedidos_unicos[num_pedido_siscap][0]["fomrato_json"] = "{}"
+
+print(f'Processamento JSON concluído!')
 print(f'---'*40)
 print(f'')
 
-# Etapa 05: Gerar estrutura JSON para integração com API
-print(df_pedidos_unicos.head())
+# Etapa 06: Exportar dados do dataframe df_pedido_unico para um arquivo Excel
+print(f'Exportando dados para arquivo Excel...')
+
+# Primeiro, atualizar o DataFrame df_pedidos_unicos com os JSONs gerados
+lista_pedidos_atualizados = []
+for num_pedido_siscap, itens in dict_pedidos_unicos.items():
+    for item in itens:
+        lista_pedidos_atualizados.append({
+            "NUM_PEDIDO_SISCAP": num_pedido_siscap,
+            "DT_TRANS": item["dt_trans"],
+            "CLIENTE": item["cliente"],
+            "NOME_CLI": item["nome_cli"],
+            "MCU": item["mcu"],
+            "MCCO": "",  # Adicionar se necessário
+            "DESCRICAO_MCCO": item["descricao_mcco"],
+            "FORMATO_JSON": item["fomrato_json"]
+        })
+
+# Criar DataFrame atualizado
+df_pedidos_unicos_atualizado = pd.DataFrame(lista_pedidos_atualizados)
+
+# Exportar para Excel
+nome_arquivo = "pedidos_unicos_com_json.xlsx"
+with pd.ExcelWriter(nome_arquivo, engine='openpyxl') as writer:
+    # Planilha principal com os dados
+    df_pedidos_unicos_atualizado.to_excel(writer, sheet_name='PEDIDOS_UNICOS', index=False)
+    
+    # Planilha com dados dos pedidos novos
+    df_pedidos_novos_agrupados.to_excel(writer, sheet_name='PEDIDOS_NOVOS', index=False)
+    
+    # Planilha com dados dos pedidos cancelados
+    df_pedidos_cancelados_agrupados.to_excel(writer, sheet_name='PEDIDOS_CANCELADOS', index=False)
+    
+    # Planilha com lotes em tratamento
+    df_lote_em_tratamento.to_excel(writer, sheet_name='LOTES_TRATAMENTO', index=False)
+
+print(f'Arquivo "{nome_arquivo}" exportado com sucesso!')
+print(f'Total de pedidos processados: {len(df_pedidos_unicos_atualizado)}')
+print(f'---'*40)
+print(f'')
+
+# Exportar também alguns JSONs para arquivos individuais (opcional)
+print(f'Exportando JSONs individuais para análise...')
+
+# Criar diretório para os JSONs se não existir
+import os
+os.makedirs("jsons_gerados", exist_ok=True)
+
+# Exportar os 5 primeiros JSONs para arquivos individuais
+for i, (num_pedido_siscap, itens) in enumerate(list(dict_pedidos_unicos.items())[:5]):
+    if itens and itens[0]["fomrato_json"] != "{}":
+        nome_arquivo_json = f"jsons_gerados/pedido_{num_pedido_siscap}.json"
+        with open(nome_arquivo_json, 'w', encoding='utf-8') as f:
+            f.write(itens[0]["fomrato_json"])
+        print(f"JSON exportado: {nome_arquivo_json}")
+
+print(f'Exportação concluída!')
+print(f'---'*40)
+print(f'')
+
+# Exemplo de como acessar o JSON de um pedido específico
+if dict_pedidos_unicos:
+    primeiro_pedido = list(dict_pedidos_unicos.keys())[0]
+    print(f"Exemplo do JSON para pedido {primeiro_pedido}:")
+    print(f"Tamanho do JSON: {len(dict_pedidos_unicos[primeiro_pedido][0]['fomrato_json'])} caracteres")
+    
+    # Mostrar estrutura do JSON (primeiros 500 caracteres)
+    json_exemplo = dict_pedidos_unicos[primeiro_pedido][0]['fomrato_json']
+    print(f"Preview do JSON:\n{json_exemplo[:500]}...")
+
+
+

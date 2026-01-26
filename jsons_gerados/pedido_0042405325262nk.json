@@ -1,0 +1,203 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042405325262nk",
+  "PEDIDO": {
+    "DT_TRANS": "2025-10-17T00:00:00",
+    "MCU": "00424053",
+    "CLIENTE": 16853397,
+    "NOME_CLI": "AGF SANTAMARIENSE",
+    "DESCRICAO_MCCO": "SE - RIO GRANDE DO SUL"
+  },
+  "RESERVADO": [
+    {
+      "ITEM": 115600469,
+      "DESCRICAO_ITEM": "FECHA MALAS VERMELHO (21 60mm)",
+      "UN_MEDIDA": "SC",
+      "QTDE": 120
+    },
+    {
+      "ITEM": 765000890,
+      "DESCRICAO_ITEM": "ENVELOPE FRONHA 16CM X 9CM",
+      "UN_MEDIDA": "PA",
+      "QTDE": 40
+    },
+    {
+      "ITEM": 889800170,
+      "DESCRICAO_ITEM": "ETIQUETA RESGATE TELESENA",
+      "UN_MEDIDA": "FL",
+      "QTDE": 2
+    }
+  ],
+  "CANCELADO": [
+    {
+      "ITEM": 115600469,
+      "DESCRICAO_ITEM": "FECHA MALAS VERMELHO (21 60mm)",
+      "UN_MEDIDA": "SC",
+      "QTDE": 40
+    },
+    {
+      "ITEM": 116001259,
+      "DESCRICAO_ITEM": "FITA ADESIVA PLAST EMPACOTAM",
+      "UN_MEDIDA": "RO",
+      "QTDE": 30
+    },
+    {
+      "ITEM": 752402499,
+      "DESCRICAO_ITEM": "ROTULO ALTERNATIVO S BANDEIRA",
+      "UN_MEDIDA": "PA",
+      "QTDE": 40
+    }
+  ],
+  "PROCESSAMENTO": [
+    {
+      "ITEM": 116601566,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA M",
+      "UN_MEDIDA": "CX",
+      "QTDE": 3
+    },
+    {
+      "ITEM": 116601566,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA M",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2
+    }
+  ],
+  "PAUTA_IMPRESSA": [
+    {
+      "ITEM": 116601558,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA P",
+      "UN_MEDIDA": "CX",
+      "QTDE": 1
+    },
+    {
+      "ITEM": 116601558,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA P",
+      "UN_MEDIDA": "CX",
+      "QTDE": 9
+    }
+  ],
+  "ATENDIDO": [
+    {
+      "SUBPAUTA": "143245529013T4ZP06",
+      "ZONA": "ZP06",
+      "NOTA_SERIE": 10302906.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 116601540,
+            "DESCRICAO_ITEM": "CAIXA ENCOMENDA G",
+            "UN_MEDIDA": "CX",
+            "QTDE": 1
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068079848BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "143245529014T4ZP06",
+      "ZONA": "ZP06",
+      "NOTA_SERIE": 10303006.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 116601540,
+            "DESCRICAO_ITEM": "CAIXA ENCOMENDA G",
+            "UN_MEDIDA": "CX",
+            "QTDE": 1
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068079896BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "143245529015T4ZP06",
+      "ZONA": "ZP06",
+      "NOTA_SERIE": 10303106.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 116601540,
+            "DESCRICAO_ITEM": "CAIXA ENCOMENDA G",
+            "UN_MEDIDA": "CX",
+            "QTDE": 1
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068079940BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1433129155011FMZM03",
+      "ZONA": "ZM03",
+      "NOTA_SERIE": 85542402.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752402030,
+            "DESCRICAO_ITEM": "AVISO RECEBIMENTO AR (CENTO)",
+            "UN_MEDIDA": "PA",
+            "QTDE": 10
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068159223BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1433368155011FMZM28",
+      "ZONA": "ZM28",
+      "NOTA_SERIE": 85573702.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752460099,
+            "DESCRICAO_ITEM": "ETIQUETA FISICA ECON MARKET YD",
+            "UN_MEDIDA": "FL",
+            "QTDE": 100
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068239828BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1433380155011FMZM10",
+      "ZONA": "ZM10",
+      "NOTA_SERIE": 85586502.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 115600370,
+            "DESCRICAO_ITEM": "SELO LACRE CAIXETA   SLC 01",
+            "UN_MEDIDA": "SC",
+            "QTDE": 20
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068286350BR"
+          },
+          {
+            "REGISTRO": "PV068286363BR"
+          }
+        ]
+      }
+    }
+  ]
+}
