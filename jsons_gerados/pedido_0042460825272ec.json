@@ -1,0 +1,83 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042460825272ec",
+  "PEDIDO": {
+    "DT_TRANS": "2025-10-01T00:00:00",
+    "MCU": "00424608",
+    "CLIENTE": 17624018,
+    "NOME_CLI": "AGF RAMOS DA MATTA",
+    "DESCRICAO_MCCO": "SE - RIO DE JANEIRO"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 115600469,
+      "DESCRICAO_ITEM": "FECHA MALAS VERMELHO (21 60mm)",
+      "UN_MEDIDA": "SC",
+      "QTDE": 10.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [],
+  "ATENDIDO": [
+    {
+      "SUBPAUTA": "143265810051FZZP14",
+      "ZONA": "ZP14",
+      "NOTA_SERIE": 8550592.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 884001733,
+            "DESCRICAO_ITEM": "CORREIOSCELULAR CHIP",
+            "UN_MEDIDA": "PA",
+            "QTDE": 1.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068081064BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1432660154738FMZM28",
+      "ZONA": "ZM28",
+      "NOTA_SERIE": 8550682.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 749900610,
+            "DESCRICAO_ITEM": "ESTAMPA 2D QR CODE",
+            "UN_MEDIDA": "FL",
+            "QTDE": 20.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068080695BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1432660154738FMZM33",
+      "ZONA": "ZM33",
+      "NOTA_SERIE": 8550722.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752402030,
+            "DESCRICAO_ITEM": "AVISO RECEBIMENTO AR (CENTO)",
+            "UN_MEDIDA": "PA",
+            "QTDE": 5.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068079613BR"
+          }
+        ]
+      }
+    }
+  ]
+}

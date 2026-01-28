@@ -1,0 +1,213 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042462225266nm",
+  "PEDIDO": {
+    "DT_TRANS": "2025-10-17T00:00:00",
+    "MCU": "00424622",
+    "CLIENTE": 17650841,
+    "NOME_CLI": "AGF PELINCA CAMPOS",
+    "DESCRICAO_MCCO": "SE - RIO DE JANEIRO"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 752405810,
+      "DESCRICAO_ITEM": "ETIQUETA FISICA SEDEX 12 DD",
+      "UN_MEDIDA": "FL",
+      "QTDE": 100.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [
+    {
+      "ITEM": 752403885,
+      "DESCRICAO_ITEM": "ETIQUETA REGISTRO SEDEX12 (SM)",
+      "UN_MEDIDA": "FL",
+      "QTDE": 100.0
+    }
+  ],
+  "ATENDIDO": [
+    {
+      "SUBPAUTA": "1433129155082FMZM03",
+      "ZONA": "ZM03",
+      "NOTA_SERIE": 8554862.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752402030,
+            "DESCRICAO_ITEM": "AVISO RECEBIMENTO AR (CENTO)",
+            "UN_MEDIDA": "PA",
+            "QTDE": 200.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068157182BR"
+          },
+          {
+            "REGISTRO": "PV068157196BR"
+          },
+          {
+            "REGISTRO": "PV068157205BR"
+          },
+          {
+            "REGISTRO": "PV068157219BR"
+          },
+          {
+            "REGISTRO": "PV068157222BR"
+          },
+          {
+            "REGISTRO": "PV068157236BR"
+          },
+          {
+            "REGISTRO": "PV068157240BR"
+          },
+          {
+            "REGISTRO": "PV068157253BR"
+          },
+          {
+            "REGISTRO": "PV068157267BR"
+          },
+          {
+            "REGISTRO": "PV068157275BR"
+          },
+          {
+            "REGISTRO": "PV068157284BR"
+          },
+          {
+            "REGISTRO": "PV068157298BR"
+          },
+          {
+            "REGISTRO": "PV068157307BR"
+          },
+          {
+            "REGISTRO": "PV068157315BR"
+          },
+          {
+            "REGISTRO": "PV068157324BR"
+          },
+          {
+            "REGISTRO": "PV068157338BR"
+          },
+          {
+            "REGISTRO": "PV068157341BR"
+          },
+          {
+            "REGISTRO": "PV068157355BR"
+          },
+          {
+            "REGISTRO": "PV068157369BR"
+          },
+          {
+            "REGISTRO": "PV068157372BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1433129155082FMZM04",
+      "ZONA": "ZM04",
+      "NOTA_SERIE": 8554862.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 116001259,
+            "DESCRICAO_ITEM": "FITA ADESIVA PLAST EMPACOTAM",
+            "UN_MEDIDA": "RO",
+            "QTDE": 24.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068165294BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "143315010083FZZP14",
+      "ZONA": "ZP14",
+      "NOTA_SERIE": 8555292.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 884001733,
+            "DESCRICAO_ITEM": "CORREIOSCELULAR CHIP",
+            "UN_MEDIDA": "PA",
+            "QTDE": 1.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068190886BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1433150155082FMZM28",
+      "ZONA": "ZM28",
+      "NOTA_SERIE": 8556612.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752460188,
+            "DESCRICAO_ITEM": "ETIQUETA FISICA SEDEX OY",
+            "UN_MEDIDA": "FL",
+            "QTDE": 200.0
+          },
+          {
+            "ITEM": 752460200,
+            "DESCRICAO_ITEM": "ETIQUETA FISICA PAC QN",
+            "UN_MEDIDA": "FL",
+            "QTDE": 200.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068191215BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1433368155082FMZM28",
+      "ZONA": "ZM28",
+      "NOTA_SERIE": 8557422.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752460099,
+            "DESCRICAO_ITEM": "ETIQUETA FISICA ECON MARKET YD",
+            "UN_MEDIDA": "FL",
+            "QTDE": 200.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068239920BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1468186155082FMZM28",
+      "ZONA": "ZM28",
+      "NOTA_SERIE": 8597832.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752403885,
+            "DESCRICAO_ITEM": "ETIQUETA REGISTRO SEDEX12 (SM)",
+            "UN_MEDIDA": "FL",
+            "QTDE": 100.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV069257010BR"
+          }
+        ]
+      }
+    }
+  ]
+}

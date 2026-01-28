@@ -1,0 +1,56 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042450325274ej",
+  "PEDIDO": {
+    "DT_TRANS": "2025-10-03T00:00:00",
+    "MCU": "00424503",
+    "CLIENTE": 17474434,
+    "NOME_CLI": "AGF JARDIM DO MEIER",
+    "DESCRICAO_MCCO": "SE - RIO DE JANEIRO"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [],
+  "ATENDIDO": [
+    {
+      "SUBPAUTA": "143271710053FZZP14",
+      "ZONA": "ZP14",
+      "NOTA_SERIE": 8550752.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 884001733,
+            "DESCRICAO_ITEM": "CORREIOSCELULAR CHIP",
+            "UN_MEDIDA": "PA",
+            "QTDE": 2.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068081563BR"
+          }
+        ]
+      }
+    },
+    {
+      "SUBPAUTA": "1432717154767FMZM28",
+      "ZONA": "ZM28",
+      "NOTA_SERIE": 8550952.0,
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752460188,
+            "DESCRICAO_ITEM": "ETIQUETA FISICA SEDEX OY",
+            "UN_MEDIDA": "FL",
+            "QTDE": 500.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV068081271BR"
+          }
+        ]
+      }
+    }
+  ]
+}
