@@ -30,7 +30,66 @@ Char(13) & Char(10)
 
 
 
+If(
+CountRows(Topic.VarDadosSiscap.ATENDIDO) > 0,
+"✔ Atendido" & Char(13) & Char(10) & Concat(Topic.VarDadosSiscap.ATENDIDO, "◾" & "SUBPAUTA: " & SUBPAUTA & " ( nf: " & NOTA_SERIE & ") " 
+& Char(13) & Char(10) &
+Concat(ITENS.SKU,DESCRICAO_ITEM & Char(13) & Char(10))
+& Char(13) & Char(10) &
+Concat(ITENS.RASTREAMENTO,REGISTRO & " ")
+)
+,
+Char(13) & Char(10)
+)
+
+
+If(
+CountRows(Topic.VarDadosSiscap.ATENDIDO) > 0,
+"✔ Atendido" & Char(13) & Char(10) & Concat(Topic.VarDadosSiscap.ATENDIDO, "◾" & "SUBPAUTA: " & SUBPAUTA & " ( nf: " & NOTA_SERIE & ") "
+& Char(13) & Char(10) &
+Concat(ITENS.SKU,DESCRICAO_ITEM & Char(13) & Char(10))
+& Char(13) & Char(10) &
+Concat(ITENS.RASTREAMENTO,REGISTRO & " ")
+& Char(13) & Char(10)
+)
+,
+Char(13) & Char(10)
+)
+
+
+If(
+CountRows(Topic.VarDadosSiscap.ATENDIDO) > 0,
+"✔ Atendido" & Char(13) & Char(10) & Concat(Topic.VarDadosSiscap.ATENDIDO, "◾" & "SUBPAUTA: " & SUBPAUTA & " ( nf: " & NOTA_SERIE & ") "
+& Char(13) & Char(10) &
+Concat(ITENS.SKU,DESCRICAO_ITEM & " , " & QTDE & " " & UN_MEDIDA & Char(13) & Char(10))
+& Char(13) & Char(10) &
+Concat(ITENS.RASTREAMENTO,REGISTRO & " ")
+& Char(13) & Char(10)
+)
+,
+Char(13) & Char(10)
+)
+
+
+{
+If(
+CountRows(Topic.VarDadosSiscap.ATENDIDO) > 0,
+"📌 **Atendido :** " & Char(13) & Char(10) & Concat(Topic.VarDadosSiscap.ATENDIDO, "📄" & " SUBPAUTA : " & SUBPAUTA & " ( nf: " & NOTA_SERIE & ") "
+& Char(13) & Char(10) &
+Concat(ITENS.SKU," ✔" &DESCRICAO_ITEM & " , " & QTDE & " " & UN_MEDIDA & Char(13) & Char(10))
+& Char(13) & Char(10) &
+Concat(ITENS.RASTREAMENTO,REGISTRO & " ")
+& Char(13) & Char(10)
+)
+,
+Char(13) & Char(10)
+)
+}
+​
+
 
 # Pedidos em falta
 If(CountRows(Topic.VarDadosSiscap.CANCELADO) > 0,"✔ Cancelados: " & Char(13) & Char(10) & Concat(Topic.VarDadosSiscap.CANCELADO," ◾" & DESCRICAO_ITEM & " , " &  QTDE & " " & UN_MEDIDA & Char(13) & Char(10)),Char(13) & Char(13) & Char(10))
 
+
+If(CountRows(Topic.VarDadosSiscap.CANCELADO) > 0," 📌 Cancelados: " & Char(13) & Char(10) & Concat(Topic.VarDadosSiscap.CANCELADO," ✔ " & DESCRICAO_ITEM & " , " &  QTDE & " " & UN_MEDIDA & Char(13) & Char(10)),Char(13) & Char(13) & Char(10))
