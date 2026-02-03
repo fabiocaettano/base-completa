@@ -1,7 +1,7 @@
 {
   "NUM_PEDIDO_SISCAP": "0042405325262nk",
   "PEDIDO": {
-    "DT_TRANS": "2025-10-17T00:00:00",
+    "DT_TRANS": "17/10/2025",
     "MCU": "00424053",
     "CLIENTE": 16853397,
     "NOME_CLI": "AGF SANTAMARIENSE",
@@ -78,7 +78,7 @@
   "ATENDIDO": [
     {
       "NOTA_SERIE": 10302906.0,
-      "SUBPAUTA": "143245529013T4ZP06",
+      "SUBPAUTA": "1432455-29013-T4-ZP06",
       "ZONA": "ZP06",
       "ITENS": {
         "SKU": [
@@ -98,7 +98,7 @@
     },
     {
       "NOTA_SERIE": 10303006.0,
-      "SUBPAUTA": "143245529014T4ZP06",
+      "SUBPAUTA": "1432455-29014-T4-ZP06",
       "ZONA": "ZP06",
       "ITENS": {
         "SKU": [
@@ -118,7 +118,7 @@
     },
     {
       "NOTA_SERIE": 10303106.0,
-      "SUBPAUTA": "143245529015T4ZP06",
+      "SUBPAUTA": "1432455-29015-T4-ZP06",
       "ZONA": "ZP06",
       "ITENS": {
         "SKU": [
@@ -138,7 +138,7 @@
     },
     {
       "NOTA_SERIE": 85542402.0,
-      "SUBPAUTA": "1433129155011FMZM03",
+      "SUBPAUTA": "1433129-155011-FM-ZM03",
       "ZONA": "ZM03",
       "ITENS": {
         "SKU": [
@@ -158,7 +158,7 @@
     },
     {
       "NOTA_SERIE": 85573702.0,
-      "SUBPAUTA": "1433368155011FMZM28",
+      "SUBPAUTA": "1433368-155011-FM-ZM28",
       "ZONA": "ZM28",
       "ITENS": {
         "SKU": [
@@ -178,7 +178,7 @@
     },
     {
       "NOTA_SERIE": 85586502.0,
-      "SUBPAUTA": "1433380155011FMZM10",
+      "SUBPAUTA": "1433380-155011-FM-ZM10",
       "ZONA": "ZM10",
       "ITENS": {
         "SKU": [

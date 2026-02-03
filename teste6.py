@@ -25,7 +25,7 @@ def verificar_e_excluir_arquivo_anterior():
     Verifica se o arquivo pedidos_unicos_com_json.xlsx existe e tenta excluí-lo.
     Se não conseguir excluir, aborta o processamento.
     """
-    arquivo_antigo = "pedidos_unicos_com_json.xlsx"
+    arquivo_antigo = "pedidos_para_agente_ia.xlsx"
     
     if os.path.exists(arquivo_antigo):
         print(f"⚠️  Arquivo anterior encontrado: {arquivo_antigo}")
@@ -120,7 +120,11 @@ print(f'')
 # Etapa 03: Configurar os DataFrames para análise
 
 ## 03.01 Criar DataFrame com pedidos únicos, filtrar aqueles que começam com '0' e exibir algumas informações
-pedidos_unicos = df_pedidos.assign(MCU=lambda x: x['NUM_PEDIDO_SISCAP'].astype(str).str[:8])[['NUM_PEDIDO_SISCAP', 'PEDIDO', 'TIPO_PEDIDO','DT_TRANS', 'MCCO','CLIENTE','NOME_CLI', 'MCU']].drop_duplicates()
+
+#pedidos_unicos = df_pedidos.assign(MCU=lambda x: x['NUM_PEDIDO_SISCAP'].astype(str).str[:8])[['NUM_PEDIDO_SISCAP', 'PEDIDO', 'TIPO_PEDIDO','DT_TRANS', 'MCCO','CLIENTE','NOME_CLI', 'MCU']].drop_duplicates()
+
+pedidos_unicos = df_pedidos.assign(MCU=lambda x: x['NUM_PEDIDO_SISCAP'].astype(str).str[:8],DT_TRANS_STRING=lambda x: x['DT_TRANS'].astype(str).str.split('-').str[::-1].str.join('/'))[['NUM_PEDIDO_SISCAP', 'PEDIDO', 'TIPO_PEDIDO','DT_TRANS', 'MCCO','CLIENTE','NOME_CLI', 'MCU','DT_TRANS_STRING']].drop_duplicates()
+
 df_pedidos_unicos = pedidos_unicos[
     pedidos_unicos['NUM_PEDIDO_SISCAP'].astype(str).str.startswith('0')
 ]
@@ -176,7 +180,7 @@ df_lotes = df_lotes.drop(df_lotes[df_lotes["status_lote"] == 250].index)
 df_lotes = df_lotes.drop(df_lotes[df_lotes["TIPO_PEDIDO"] == "ZR"].index)
 
 ## 03.04.02  Criar coluna do numero da subpauta
-df_lotes["SUBPAUTA"] = (df_lotes["LOTE"].astype(str) + df_lotes["PEDIDO"].astype(str) + df_lotes["TIPO_PEDIDO"].astype(str) + df_lotes["ZONA"].astype(str)).astype(str)
+df_lotes["SUBPAUTA"] = (df_lotes["LOTE"].astype(str) + "-" + df_lotes["PEDIDO"].astype(str) + "-" +df_lotes["TIPO_PEDIDO"].astype(str) + "-"+ df_lotes["ZONA"].astype(str)).astype(str)
 
 ## 03.04.03 Merge entre os dados dos lotes e pedidos
 df_lotes_relacionados_com_df_pedidos = pd.merge(
@@ -351,7 +355,7 @@ for _, linha in df_lote_possui_objeto_agrupar_itens.iterrows():
     item = {          
           "subpauta": linha["SUBPAUTA"],
           "zona": linha["ZONA"],
-          "nota_serie": linha["NOTA_SERIE"],
+          "nota_serie": linha["NOTA_SERIE"],          
           "item": linha["item"],
           "descricao": linha["descricao"],
           "um": linha["um"],
@@ -386,6 +390,7 @@ for _, linha in df_pedidos_unicos.iterrows():
     id_ = str(linha["NUM_PEDIDO_SISCAP"])
     item = {
         "dt_trans" : linha["DT_TRANS"],
+        "dt_trans_string" : linha["DT_TRANS_STRING"],
         "cliente" : linha["CLIENTE"],
         "nome_cli" : linha["NOME_CLI"],
         "mcu" : linha["MCU"],
@@ -419,15 +424,15 @@ def construir_json_pedido(num_pedido_siscap, dict_pedido_unico, dict_pedidos_nov
     pedido_info = dict_pedido_unico.get(num_pedido_siscap, [{}])[0]
     
     # Converter dt_trans para string ISO se necessário
-    dt_trans = pedido_info.get("dt_trans")
-    if isinstance(dt_trans, pd.Timestamp):
-        dt_trans = dt_trans.isoformat()
+    #dt_trans = pedido_info.get("dt_trans_string", "")
+    #if isinstance(dt_trans, pd.Timestamp):
+    #    dt_trans = dt_trans.isoformat()
     
     # Estrutura JSON base conforme especificação
     estrutura_json = {
         "NUM_PEDIDO_SISCAP": num_pedido_siscap,
         "PEDIDO": {
-            "DT_TRANS": dt_trans,
+            "DT_TRANS": str(pedido_info.get("dt_trans_string", "")),
             "MCU": str(pedido_info.get("mcu", "")),
             "CLIENTE": int(pedido_info.get("cliente", 0)) if pd.notna(pedido_info.get("cliente")) else 0,
             "NOME_CLI": str(pedido_info.get("nome_cli", "")),
@@ -624,7 +629,8 @@ for num_pedido_siscap, itens in dict_pedidos_unicos.items():
 df_pedidos_unicos_atualizado = pd.DataFrame(lista_pedidos_atualizados)
 
 # Exportar para Excel
-nome_arquivo = "pedidos_unicos_com_json.xlsx"
+#nome_arquivo = "pedidos_unicos_com_json.xlsx"
+nome_arquivo = "pedidos_para_agente_ia.xlsx"
 
 def criar_tabela_excel(worksheet, nome_tabela, nome_exibicao=None):
     """
