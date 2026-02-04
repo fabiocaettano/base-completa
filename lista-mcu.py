@@ -172,6 +172,12 @@ def criarTabelaExcel(worksheet, nome_tabela, nome_exibicao=None):
             adjusted_width = min(max_length + 2, 50)
             worksheet.column_dimensions[column_letter].width = adjusted_width
 
+def exportarParaExcel(df_resultado, nome_da_planilha, nome_da_tabela, nome_de_exibicao, nome_do_arquivo):
+    # Exportar DataFrame para Excel com formatação de tabela
+    with pd.ExcelWriter(nome_do_arquivo, engine='openpyxl') as writer:
+        df_resultado.to_excel(writer, sheet_name=nome_da_planilha, index=False)
+        worksheet = writer.sheets[nome_da_planilha]
+        criarTabelaExcel(worksheet, nome_da_tabela, nome_de_exibicao)
 
 if __name__ == "__main__":
     # Ler planilha excel
@@ -191,5 +197,6 @@ if __name__ == "__main__":
     # Exportar para Excel
     nomeDaPlanilha = "ListaMcu"
     nomeDaTabela = "TabelaMcu"
-    nomeDoArquivo = "002-lista_mcu.xlsx"
-    
+    nomeDeExibicao = "Tabela de MCU com Pedidos"
+    nomeDoArquivo = "pedidos_para_agente_ia_mcu.xlsx"    
+    exportarParaExcel(df_resultado, nomeDaPlanilha, nomeDaTabela, nomeDeExibicao, nomeDoArquivo)

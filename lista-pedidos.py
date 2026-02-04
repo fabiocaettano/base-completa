@@ -630,7 +630,7 @@ df_pedidos_unicos_atualizado = pd.DataFrame(lista_pedidos_atualizados)
 
 # Exportar para Excel
 #nome_arquivo = "pedidos_unicos_com_json.xlsx"
-nome_arquivo = "pedidos_para_agente_ia.xlsx"
+nome_arquivo = "pedidos_para_agente_ia_pedidos.xlsx"
 
 def criar_tabela_excel(worksheet, nome_tabela, nome_exibicao=None):
     """
@@ -693,13 +693,13 @@ with pd.ExcelWriter(nome_arquivo, engine='openpyxl') as writer:
     )
     
     # Planilha com dados dos pedidos novos
-    df_pedidos_novos_agrupados.to_excel(writer, sheet_name='PEDIDOS_NOVOS', index=False)
+    #df_pedidos_novos_agrupados.to_excel(writer, sheet_name='PEDIDOS_NOVOS', index=False)
     
     # Planilha com dados dos pedidos cancelados
-    df_pedidos_cancelados_agrupados.to_excel(writer, sheet_name='PEDIDOS_CANCELADOS', index=False)
+    #df_pedidos_cancelados_agrupados.to_excel(writer, sheet_name='PEDIDOS_CANCELADOS', index=False)
     
     # Planilha com lotes em tratamento
-    df_lote_em_tratamento.to_excel(writer, sheet_name='LOTES_TRATAMENTO', index=False)
+    #df_lote_em_tratamento.to_excel(writer, sheet_name='LOTES_TRATAMENTO', index=False)
 
 print(f'Arquivo "{nome_arquivo}" exportado com sucesso!')
 print(f'Total de pedidos processados: {len(df_pedidos_unicos_atualizado)}')
