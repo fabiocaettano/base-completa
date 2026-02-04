@@ -1,6 +1,7 @@
 from collections import defaultdict
 import pandas as pd
 import numpy as np
+import json
 
 def carregarDados():
     #Ler Planilha
@@ -15,6 +16,7 @@ def criarDataframeMcuSolicitante(df_pedidos):
 def criarDataframeMcuPossuiPedidos(df_pedidos):    
     # Criar dataframe especifico
     df_mcu_possui_pedidos = df_pedidos.assign(MCU=lambda x: x['NUM_PEDIDO_SISCAP'].astype(str).str[:8])[['MCU']].drop_duplicates()
+    df_mcu_possui_pedidos["FORMATO_JSON"] = "{}"
     return df_mcu_possui_pedidos
 
 
@@ -34,7 +36,10 @@ def configurarDicionarioMcuPossuiPedidos(df_mcu_possui_pedidos):
     dict_mcu_possui_pedidos = defaultdict(list)
     for _, linha in df_mcu_possui_pedidos.iterrows():
         id_ = str(linha["MCU"])
-        dict_mcu_possui_pedidos[id_]
+        item = {
+            "formato_json" : "{}"
+        }
+        dict_mcu_possui_pedidos[id_].append(item)
     return dict_mcu_possui_pedidos
 
 # Função para converter objetos Timestamp para string ISO
@@ -49,7 +54,7 @@ def json_serializer(obj):
 # Função para construir o JSON para um pedido específico conforme estrutura especificada
 def construir_json_pedido(mcu,dict_mcu_solicitante):
 
-    pedido_info = dict_mcu_solicitante.get(mcu, [{}])[0]
+    #pedido_info = dict_mcu_solicitante.get(mcu, [{}])[0]
 
     estrutura_json = {
         "MCU" : mcu,
@@ -71,6 +76,7 @@ def construir_json_pedido(mcu,dict_mcu_solicitante):
     return estrutura_json
 
 # Função para construir o JSON para um pedido específico conforme estrutura especificada
+"""
 def construir_json_possui_pedido(mcu,dict_mcu_possui_pedido):
     
     estrutura_json = {
@@ -89,6 +95,21 @@ def construir_json_possui_pedido(mcu,dict_mcu_possui_pedido):
             estrutura_json[chave] = []
 
     return estrutura_json
+"""
+
+def teste(dict_mcu_possui_pedido, dict_mcu_solicitante):
+    for mcu in dict_mcu_possui_pedido.keys():
+        # construir json para este pedido
+        json_data = construir_json_pedido(mcu,dict_mcu_solicitante)
+
+        # Converter para string JSON
+        json_str = json.dumps(json_data, default=json_serializer, indent=2, ensure_ascii=False)
+        
+        # Atualizar o dicionario dict_mcu_possui_pedido:
+        if dict_mcu_possui_pedido[mcu]:
+            dict_mcu_possui_pedido[mcu][0]["formato_json"] = json_str
+        
+        return dict_mcu_possui_pedido
 
 
 if __name__ == "__main__":
@@ -100,6 +121,7 @@ if __name__ == "__main__":
     #criar dicionario
     dict_mcu_solicitante = configurarDicionarioMcuSolicitante(df_mcu_solicitante)
     dict_mcu_possui_pedido = configurarDicionarioMcuPossuiPedidos(df_mcu_possui_pedidos)
-    #configurar json
+    #atualizado a coluna formato_json
+    dict_mcu_possui_pedido = teste(dict_mcu_possui_pedido, dict_mcu_solicitante)
     print(dict_mcu_possui_pedido)
     

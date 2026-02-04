@@ -1,0 +1,34 @@
+{
+  "NUM_PEDIDO_SISCAP": "0006166025275en",
+  "PEDIDO": {
+    "DT_TRANS": "06/10/2025",
+    "MCU": "00061660",
+    "CLIENTE": 5507146,
+    "NOME_CLI": "AC BAIRRO VALE DO SERENO",
+    "DESCRICAO_MCCO": "SE - MINAS GERAIS"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 116600071,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA 3",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    },
+    {
+      "ITEM": 116600659,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA 6B",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    },
+    {
+      "ITEM": 116601094,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA RPC 2B",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [],
+  "ATENDIDO": []
+}

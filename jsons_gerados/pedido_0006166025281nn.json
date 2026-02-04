@@ -1,0 +1,58 @@
+{
+  "NUM_PEDIDO_SISCAP": "0006166025281nn",
+  "PEDIDO": {
+    "DT_TRANS": "04/11/2025",
+    "MCU": "00061660",
+    "CLIENTE": 5507146,
+    "NOME_CLI": "AC BAIRRO VALE DO SERENO",
+    "DESCRICAO_MCCO": "SE - MINAS GERAIS"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 707007780,
+      "DESCRICAO_ITEM": "TONER PANTUM  TL-425U ORIGINAL",
+      "UN_MEDIDA": "UN",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 707007781,
+      "DESCRICAO_ITEM": "UNID IMAGEM DL425X ORIG.PRETO",
+      "UN_MEDIDA": "UN",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 708009085,
+      "DESCRICAO_ITEM": "BOBINA DE PAPEL PARA REP",
+      "UN_MEDIDA": "BO",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 752402030,
+      "DESCRICAO_ITEM": "AVISO RECEBIMENTO AR (CENTO)",
+      "UN_MEDIDA": "PA",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 765000660,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA 2",
+      "UN_MEDIDA": "PA",
+      "QTDE": 10.0
+    },
+    {
+      "ITEM": 765000911,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA TAMANHO GRANDE",
+      "UN_MEDIDA": "PA",
+      "QTDE": 10.0
+    },
+    {
+      "ITEM": 851001572,
+      "DESCRICAO_ITEM": "SELO REGULAR 1P CARTA NCOM F42",
+      "UN_MEDIDA": "FL",
+      "QTDE": 20.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [],
+  "ATENDIDO": []
+}

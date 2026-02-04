@@ -1,0 +1,88 @@
+{
+  "NUM_PEDIDO_SISCAP": "0006166025247nt",
+  "PEDIDO": {
+    "DT_TRANS": "07/10/2025",
+    "MCU": "00061660",
+    "CLIENTE": 5507146,
+    "NOME_CLI": "AC BAIRRO VALE DO SERENO",
+    "DESCRICAO_MCCO": "SE - MINAS GERAIS"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 116600071,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA 3",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    },
+    {
+      "ITEM": 116600659,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA 6B",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    },
+    {
+      "ITEM": 116600934,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA 5",
+      "UN_MEDIDA": "CX",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 116601000,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA RPC 3B",
+      "UN_MEDIDA": "CX",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 116601094,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA RPC 2B",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    },
+    {
+      "ITEM": 116601558,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA P",
+      "UN_MEDIDA": "CX",
+      "QTDE": 2.0
+    },
+    {
+      "ITEM": 708008933,
+      "DESCRICAO_ITEM": "BOBINA PARA SENHA ATEND SIGESF",
+      "UN_MEDIDA": "BO",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 708009085,
+      "DESCRICAO_ITEM": "BOBINA DE PAPEL PARA REP",
+      "UN_MEDIDA": "BO",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 752402030,
+      "DESCRICAO_ITEM": "AVISO RECEBIMENTO AR (CENTO)",
+      "UN_MEDIDA": "PA",
+      "QTDE": 5.0
+    },
+    {
+      "ITEM": 760200564,
+      "DESCRICAO_ITEM": "ENVELOPE CARTAO 1",
+      "UN_MEDIDA": "PA",
+      "QTDE": 5.0
+    },
+    {
+      "ITEM": 765000911,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA TAMANHO GRANDE",
+      "UN_MEDIDA": "PA",
+      "QTDE": 10.0
+    },
+    {
+      "ITEM": 853004463,
+      "DESCRICAO_ITEM": "ENV SACO 1   TRABALHO INFANTIL",
+      "UN_MEDIDA": "PA",
+      "QTDE": 10.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [],
+  "ATENDIDO": []
+}
