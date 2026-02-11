@@ -1,0 +1,51 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042412626014nc",
+  "PEDIDO": {
+    "DT_TRANS": "27/01/2026",
+    "MCU": "00424126",
+    "CLIENTE": 16963665,
+    "NOME_CLI": "AGF SANTA CASA",
+    "DESCRICAO_MCCO": "SE - RIO GRANDE DO SUL"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [],
+  "ATENDIDO": [
+    {
+      "NOTA_SERIE": 8604972.0,
+      "SUBPAUTA": "1486693-156900-FM-ZM28",
+      "ZONA": "ZM28",
+      "ITENS": {
+        "SKU": [
+          {
+            "ITEM": 752460188,
+            "DESCRICAO_ITEM": "ETIQUETA FISICA SEDEX OY",
+            "UN_MEDIDA": "FL",
+            "QTDE": 6000.0
+          }
+        ],
+        "RASTREAMENTO": [
+          {
+            "REGISTRO": "PV069444114BR"
+          },
+          {
+            "REGISTRO": "PV069444128BR"
+          },
+          {
+            "REGISTRO": "PV069444131BR"
+          },
+          {
+            "REGISTRO": "PV069444145BR"
+          },
+          {
+            "REGISTRO": "PV069444159BR"
+          },
+          {
+            "REGISTRO": "PV069444162BR"
+          }
+        ]
+      }
+    }
+  ]
+}

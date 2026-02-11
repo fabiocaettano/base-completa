@@ -1,0 +1,46 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042406026013nb",
+  "PEDIDO": {
+    "DT_TRANS": "06/02/2026",
+    "MCU": "00424060",
+    "CLIENTE": 16865124,
+    "NOME_CLI": "AGF LIMA E SILVA",
+    "DESCRICAO_MCCO": "SE - RIO GRANDE DO SUL"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [
+    {
+      "ITEM": 116001259,
+      "DESCRICAO_ITEM": "FITA ADESIVA PLAST EMPACOTAM",
+      "UN_MEDIDA": "RO",
+      "QTDE": 30.0
+    },
+    {
+      "ITEM": 749900610,
+      "DESCRICAO_ITEM": "ESTAMPA 2D QR CODE",
+      "UN_MEDIDA": "FL",
+      "QTDE": 10.0
+    },
+    {
+      "ITEM": 752402030,
+      "DESCRICAO_ITEM": "AVISO RECEBIMENTO AR (CENTO)",
+      "UN_MEDIDA": "PA",
+      "QTDE": 5.0
+    },
+    {
+      "ITEM": 752405462,
+      "DESCRICAO_ITEM": "ETIQUETA FIS REGIST URG BN",
+      "UN_MEDIDA": "FL",
+      "QTDE": 200.0
+    },
+    {
+      "ITEM": 752460099,
+      "DESCRICAO_ITEM": "ETIQUETA FISICA ECON MARKET YD",
+      "UN_MEDIDA": "FL",
+      "QTDE": 100.0
+    }
+  ],
+  "ATENDIDO": []
+}

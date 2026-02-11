@@ -1,0 +1,77 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042406126034nt",
+  "PEDIDO": {
+    "DT_TRANS": "06/02/2026",
+    "MCU": "00424061",
+    "CLIENTE": 16867530,
+    "NOME_CLI": "AGF SAO PELEGRINO",
+    "DESCRICAO_MCCO": "SE - RIO GRANDE DO SUL"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 765000911,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA TAMANHO GRANDE",
+      "UN_MEDIDA": "PA",
+      "QTDE": 20.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [
+    {
+      "ITEM": 116001259,
+      "DESCRICAO_ITEM": "FITA ADESIVA PLAST EMPACOTAM",
+      "UN_MEDIDA": "RO",
+      "QTDE": 96.0
+    },
+    {
+      "ITEM": 752402499,
+      "DESCRICAO_ITEM": "ROTULO ALTERNATIVO S BANDEIRA",
+      "UN_MEDIDA": "PA",
+      "QTDE": 20.0
+    },
+    {
+      "ITEM": 752460099,
+      "DESCRICAO_ITEM": "ETIQUETA FISICA ECON MARKET YD",
+      "UN_MEDIDA": "FL",
+      "QTDE": 50.0
+    },
+    {
+      "ITEM": 752460188,
+      "DESCRICAO_ITEM": "ETIQUETA FISICA SEDEX OY",
+      "UN_MEDIDA": "FL",
+      "QTDE": 300.0
+    },
+    {
+      "ITEM": 116601540,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA G",
+      "UN_MEDIDA": "CX",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 116601558,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA P",
+      "UN_MEDIDA": "CX",
+      "QTDE": 4.0
+    },
+    {
+      "ITEM": 116601566,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA M",
+      "UN_MEDIDA": "CX",
+      "QTDE": 6.0
+    },
+    {
+      "ITEM": 116601728,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA GG",
+      "UN_MEDIDA": "CX",
+      "QTDE": 1.0
+    },
+    {
+      "ITEM": 765000660,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA 2",
+      "UN_MEDIDA": "PA",
+      "QTDE": 10.0
+    }
+  ],
+  "ATENDIDO": []
+}

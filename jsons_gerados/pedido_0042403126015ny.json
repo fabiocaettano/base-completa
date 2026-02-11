@@ -1,0 +1,53 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042403126015ny",
+  "PEDIDO": {
+    "DT_TRANS": "06/02/2026",
+    "MCU": "00424031",
+    "CLIENTE": 16817630,
+    "NOME_CLI": "AGF SETE DE ABRIL",
+    "DESCRICAO_MCCO": "SE - RIO GRANDE DO SUL"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 760200564,
+      "DESCRICAO_ITEM": "ENVELOPE CARTAO 1",
+      "UN_MEDIDA": "PA",
+      "QTDE": 5.0
+    },
+    {
+      "ITEM": 765000652,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA 1",
+      "UN_MEDIDA": "PA",
+      "QTDE": 5.0
+    },
+    {
+      "ITEM": 765000890,
+      "DESCRICAO_ITEM": "ENVELOPE FRONHA 16CM X 9CM",
+      "UN_MEDIDA": "PA",
+      "QTDE": 60.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [
+    {
+      "ITEM": 115600370,
+      "DESCRICAO_ITEM": "SELO LACRE CAIXETA   SLC 01",
+      "UN_MEDIDA": "SC",
+      "QTDE": 10.0
+    },
+    {
+      "ITEM": 116001259,
+      "DESCRICAO_ITEM": "FITA ADESIVA PLAST EMPACOTAM",
+      "UN_MEDIDA": "RO",
+      "QTDE": 42.0
+    },
+    {
+      "ITEM": 752402499,
+      "DESCRICAO_ITEM": "ROTULO ALTERNATIVO S BANDEIRA",
+      "UN_MEDIDA": "PA",
+      "QTDE": 40.0
+    }
+  ],
+  "ATENDIDO": []
+}

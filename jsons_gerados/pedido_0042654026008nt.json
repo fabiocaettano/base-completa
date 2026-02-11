@@ -1,0 +1,47 @@
+{
+  "NUM_PEDIDO_SISCAP": "0042654026008nt",
+  "PEDIDO": {
+    "DT_TRANS": "06/02/2026",
+    "MCU": "00426540",
+    "CLIENTE": 25148949,
+    "NOME_CLI": "AGF VALE DO TAQUARI",
+    "DESCRICAO_MCCO": "SE - RIO GRANDE DO SUL"
+  },
+  "RESERVADO": [],
+  "CANCELADO": [
+    {
+      "ITEM": 115600507,
+      "DESCRICAO_ITEM": "LACRE METALICO BAU CAMINHAO",
+      "UN_MEDIDA": "SC",
+      "QTDE": 4.0
+    },
+    {
+      "ITEM": 765000652,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA 1",
+      "UN_MEDIDA": "PA",
+      "QTDE": 5.0
+    }
+  ],
+  "PROCESSAMENTO": [],
+  "PAUTA_IMPRESSA": [
+    {
+      "ITEM": 116601566,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA M",
+      "UN_MEDIDA": "CX",
+      "QTDE": 8.0
+    },
+    {
+      "ITEM": 116601728,
+      "DESCRICAO_ITEM": "CAIXA ENCOMENDA GG",
+      "UN_MEDIDA": "CX",
+      "QTDE": 5.0
+    },
+    {
+      "ITEM": 765000660,
+      "DESCRICAO_ITEM": "ENVELOPE BOLHA 2",
+      "UN_MEDIDA": "PA",
+      "QTDE": 12.0
+    }
+  ],
+  "ATENDIDO": []
+}

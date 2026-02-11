@@ -614,7 +614,7 @@ for num_pedido_siscap, itens in dict_pedidos_unicos.items():
 
         lista_pedidos_atualizados.append({
             "NUM_PEDIDO_SISCAP": num_pedido_siscap,
-            "DT_TRANS": item["dt_trans"],
+            "DT_TRANS": item["dt_trans_string"],
             "CLIENTE": item["cliente"],
             "NOME_CLI": item["nome_cli"],
             "MCU": item["mcu"],
