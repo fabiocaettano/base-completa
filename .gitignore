@@ -2,5 +2,7 @@
 *.log   
 resultados_final/
 diversos/
+excel/
 *.xlsx
 *.txt
+*.xlsm
